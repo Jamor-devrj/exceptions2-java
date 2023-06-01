@@ -1,4 +1,7 @@
-package model.entities;		/*****GAMBIARRA*****/
+package entities;	/*****SOLUÇÃO CORRETA*****/
+
+import exceptions.BusinessException;
+
 
 public class Account {
 	
@@ -52,17 +55,17 @@ public class Account {
 	}
 	
 	public void withdraw(Double amount) {
+		validateWithdraw(amount);
 		balance -= amount;					
 	}
 	
-	public String validateWithdraw(double amount) {
+	private void validateWithdraw(double amount) {
 		if(amount > getWithdrawLimit()) {
-			return "Withdraw error: The amount exceeds withdraw limit";
+			throw new BusinessException("Withdraw error: The amount exceeds withdraw limit");
 		}
 		if(amount > getBalance()) {
-			return "Withdraw error: Not enough balance";
-		}
-		return null;
+			throw new BusinessException("Withdraw error: Not enough balance");
+		}		
 	}
 	
 	@Override
