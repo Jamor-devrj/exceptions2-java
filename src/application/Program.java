@@ -11,9 +11,7 @@ public class Program {
 		
 		Locale.setDefault(Locale.US);
 		Scanner sc = new Scanner(System.in);
-		
-		Account acc;		
-	
+					
 		System.out.println("Enter account data");
 		System.out.print("Number: ");
 		int number = sc.nextInt();
@@ -25,16 +23,23 @@ public class Program {
 		System.out.print("Withdraw limit: ");
 		double withDrawLimit = sc.nextDouble();
 		
-		acc = new Account(number, holder, balance, withDrawLimit );
+		Account acc = new Account(number, holder, balance, withDrawLimit);
 		
 		System.out.println();
 		System.out.print("Enter amount for withdraw: ");
-		double withdraw = sc.nextDouble();
+		double amount = sc.nextDouble();
 		
-		acc.withdraw(withdraw);
-							
-		System.out.println(acc);						
-				
+		if(amount > acc.getWithdrawLimit()) {
+			System.out.println("Withdraw error: The amount exceeds withdraw limit");
+		}
+		else if(amount > acc.getBalance()) {
+			System.out.println("Withdraw error: Not enough balance");
+		}
+		else {		
+			acc.withdraw(amount);		
+			System.out.println("New balance: " + String.format("%.2f", acc.getBalance()));
+		}
+		
 		sc.close();
 	}	
 

@@ -15,7 +15,7 @@ public class Account {
 		this.balance = balance;
 		this.withdrawLimit = withdrawLimit;
 	}
-
+	
 	public Integer getNumber() {
 		return number;
 	}
@@ -35,9 +35,17 @@ public class Account {
 	public Double getBalance() {
 		return balance;
 	}
-	
+
+	public void setBalance(Double balance) {
+		this.balance = balance;
+	}
+
 	public Double getWithdrawLimit() {
 		return withdrawLimit;
+	}
+
+	public void setWithdrawLimit(Double withdrawLimit) {
+		this.withdrawLimit = withdrawLimit;
 	}
 
 	public void deposit(Double amount) {
