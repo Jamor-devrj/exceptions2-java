@@ -1,4 +1,4 @@
-package application;
+package application;		/*****GAMBIARRA*****/
 
 import java.util.Locale;
 import java.util.Scanner;
@@ -29,12 +29,10 @@ public class Program {
 		System.out.print("Enter amount for withdraw: ");
 		double amount = sc.nextDouble();
 		
-		if(amount > acc.getWithdrawLimit()) {
-			System.out.println("Withdraw error: The amount exceeds withdraw limit");
-		}
-		else if(amount > acc.getBalance()) {
-			System.out.println("Withdraw error: Not enough balance");
-		}
+		String error = acc.validateWithdraw(amount); 
+		if(error != null) {
+			System.out.println(error);
+		}		
 		else {		
 			acc.withdraw(amount);		
 			System.out.println("New balance: " + String.format("%.2f", acc.getBalance()));
